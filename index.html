@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hearts Remedy — Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      padding: 1.25rem 2.75rem;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.65) 0%,
+        transparent 100%
+      );
+    }
+
+    .discord-open-btn {
+      background: none;
+      border: 1px solid #b50b88;
+      color: #b50b88;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .discord-open-btn:hover {
+      background: #b50b88;
+      color: #fff;
+    }
+
+    nav a.youtube-btn {
+      border: 1px solid #b50b88;
+      color: #b50b88;
+      padding: 0.35rem 1rem;
+      border-radius: 3px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    nav a.youtube-btn:hover {
+      background: #b50b88;
+      color: #fff;
+      text-shadow: none;
+    }
+
+    nav a {
+      color: #b50b88;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: text-shadow 0.25s ease;
+    }
+
+    nav a:hover {
+      text-shadow:
+        0 0 8px #C4567A,
+        0 0 20px #C4567A,
+        0 0 40px rgba(196, 86, 122, 0.4);
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(0, 0, 0, 0.50) 45%,
+        rgba(0, 0, 0, 0.10) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%);
+      z-index: 1;
+      max-width: 750px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(6rem, 8vw, 8rem);
+      line-height: 0.92;
+      color: #cf007c;
+      letter-spacing: 0.04em;
+      text-shadow:
+        0 0 18px rgba(207, 0, 124, 0.9),
+        0 0 40px rgba(207, 0, 124, 0.65),
+        0 0 80px rgba(207, 0, 124, 0.4),
+        0 0 140px rgba(207, 0, 124, 0.2);
+    }
+
+    .hero-text p {
+      margin-top: 1.1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.7;
+      letter-spacing: 0.025em;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 1.25rem;
+      background: none;
+      border: 1px solid #b50b88;
+      color: #b50b88;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.75rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-cta:hover {
+      background: #b50b88;
+      color: #fff;
+    }
+
+    .portfolio-section {
+      background: #1f001c;
+      padding: 3.5rem 0 2.5rem;
+      border-top: 1px solid #1c1c1c;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .carousel-side {
+      flex: 1;
+      min-width: 0;
+      height: min(500px, 38vw);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .carousel-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0.25);
+      transition: filter 0.2s ease;
+    }
+
+    .carousel-side:hover img {
+      filter: brightness(0.5);
+    }
+
+    .carousel-side-left img {
+      object-position: right center;
+    }
+
+    .carousel-side-right img {
+      object-position: left center;
+    }
+
+    .arrow-btn {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 1.4rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .arrow-btn span {
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 26px solid transparent;
+      border-bottom: 26px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .arrow-left span  { border-right: 34px solid #888; }
+    .arrow-right span { border-left:  34px solid #888; }
+    .arrow-left:hover  span { border-right-color: #b50b88; }
+    .arrow-right:hover span { border-left-color:  #b50b88; }
+
+    .carousel-main {
+      flex-shrink: 0;
+      width: min(500px, 38vw);
+      height: min(500px, 38vw);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .carousel-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0);
+      background: rgba(0, 0, 0, 0);
+      transition: color 0.2s ease, background 0.2s ease;
+      user-select: none;
+    }
+
+    .carousel-main:hover .play-overlay {
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .track-info {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .track-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+    }
+
+    .projects-section {
+      padding: 1rem 8%;
+      background: #120010;
+      border-top: 1px solid #1c1c1c;
+    }
+
+    .projects-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1.1rem;
+    }
+
+    .projects-icons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .project-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .project-link img {
+      width: 128px;
+      height: 128px;
+      border-radius: 2px;
+      object-fit: cover;
+      border: 1px solid transparent;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-link:hover img {
+      border-color: #b50b88;
+      box-shadow: 0 0 10px rgba(181, 11, 136, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .project-link::after {
+      content: attr(data-name);
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.88);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      padding: 4px 9px;
+      border-radius: 3px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .project-link:hover::after {
+      opacity: 1;
+    }
+
+    .commissions-section {
+      border-top: 1px solid rgba(181, 11, 136, 0.45);
+      border-bottom: 1px solid rgba(181, 11, 136, 0.45);
+      scroll-margin-top: 80px;
+    }
+
+    .commissions-toggle {
+      width: 100%;
+      background: #3a002f;
+      border: none;
+      color: #d40fa0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 1.75rem 8%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease;
+    }
+
+    .commissions-toggle:hover {
+      background: #4a003d;
+    }
+
+    .toggle-arrow {
+      display: inline-block;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.35s ease;
+    }
+
+    .commissions-toggle.open .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .commissions-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+    }
+
+    .commissions-body.open {
+      max-height: 1000px;
+    }
+
+    .commissions-inner {
+      background-image: url('https://file.garden/ai5Hm_rOLRCONB5c/midbanner2.png');
+      background-size: cover;
+      background-position: center;
+      padding: 3.5rem 8%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .commissions-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      color: #cf007c;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-shadow:
+        0 0 18px rgba(207, 0, 124, 0.9),
+        0 0 40px rgba(207, 0, 124, 0.65),
+        0 0 80px rgba(207, 0, 124, 0.4),
+        0 0 140px rgba(207, 0, 124, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .commissions-columns {
+      display: flex;
+      gap: 4rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .commissions-col {
+      flex: 1;
+    }
+
+    .commissions-col-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 0.75rem;
+    }
+
+    .commissions-col p {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+    }
+
+    .commissions-col a {
+      color: #b50b88;
+      text-decoration: none;
+    }
+
+    .commissions-col a:hover {
+      text-decoration: underline;
+    }
+
+    .commission-rate {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: #cf007c;
+      letter-spacing: 0.08em;
+      text-shadow:
+        0 0 12px rgba(207, 0, 124, 0.8),
+        0 0 30px rgba(207, 0, 124, 0.4);
+      margin: 0.6rem 0 1.4rem;
+    }
+
+    .commission-contact {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      max-width: 740px;
+      width: 90%;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.85rem;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-text {
+      flex: 1;
+      padding-top: 0.5rem;
+    }
+
+    .modal-text p {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    .modal-text a {
+      color: #b50b88;
+      text-decoration: none;
+    }
+
+    .modal-text a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-section {
+      padding: 4rem 8%;
+      background: #380032;
+      border-top: 1px solid #1c1c1c;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-section p {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 2;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-section a {
+      color: #b50b88;
+      text-decoration: none;
+    }
+
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+
+      nav {
+        position: sticky;
+        top: 0;
+        padding: 0.85rem 1.25rem;
+        gap: 1rem;
+        background: #1a0018;
+      }
+
+      .hero::after {
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.92) 0%,
+          rgba(0, 0, 0, 0.80) 55%,
+          rgba(0, 0, 0, 0.50) 100%
+        );
+      }
+
+      .hero-text {
+        left: 5%;
+        max-width: 88%;
+      }
+
+      .hero-text h1 {
+        font-size: clamp(2rem, 9vw, 3.2rem);
+      }
+
+      .hero-text p {
+        font-size: 0.72rem;
+        line-height: 1.5;
+        margin-top: 0.6rem;
+      }
+
+      .projects-section {
+        padding: 1.25rem 5%;
+      }
+
+      .projects-icons {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .project-link img {
+        width: 72px;
+        height: 72px;
+      }
+
+      .portfolio-section {
+        padding: 2rem 0 1.5rem;
+        overflow: hidden;
+      }
+
+      .carousel {
+        justify-content: center;
+      }
+
+      .carousel-side {
+        display: block;
+        flex: 0 0 28vw;
+        height: 50vw;
+        overflow: hidden;
+      }
+
+      .carousel-main {
+        flex: 0 0 50vw;
+        width: 50vw;
+        height: 50vw;
+      }
+
+      .arrow-btn {
+        flex-shrink: 0;
+        padding: 0 0.4rem;
+      }
+
+      .arrow-btn span {
+        border-top-width: 14px;
+        border-bottom-width: 14px;
+      }
+
+      .arrow-left span  { border-right-width: 18px; }
+      .arrow-right span { border-left-width:  18px; }
+
+      .track-title {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+      }
+
+      .modal-box {
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5rem 1.25rem 1.5rem;
+        gap: 1.25rem;
+      }
+
+      .modal-box iframe {
+        width: 100%;
+        max-width: 300px;
+        height: 280px;
+      }
+
+      .contact-section {
+        padding: 2.5rem 5%;
+      }
+
+      .commissions-toggle {
+        padding: 0.85rem 5%;
+      }
+
+      .commissions-inner {
+        padding: 2.5rem 5%;
+      }
+
+      .commissions-columns {
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .hero-cta {
+        font-size: 0.68rem;
+        padding: 0.4rem 1rem;
+        margin-top: 0.9rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <button class="discord-open-btn" id="discord-open-btn">Discord</button>
+    <a href="https://www.youtube.com/channel/UCaXykkxu-LzTpi8L4Brtd_A/" target="_blank" rel="noopener" class="youtube-btn">YouTube</a>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <img src="https://file.garden/ai5Hm_rOLRCONB5c/splashheartshorter.png" alt="Hearts Remedy" />
+      <div class="hero-text">
+        <h1>HEARTS REMEDY</h1>
+        <p>
+          Hi, welcome to my website, I'm Remedy Hearts, a musician, game developer, and artist!<br />
+          On this website you can find links to all the works I've contributed to, as well as my Discord, Youtube, and other useful links <3
+        </p>
+        <a href="#commissions" class="hero-cta">Commissions ↓</a>
+      </div>
+    </section>
+
+    <section class="projects-section">
+      <p class="projects-label">Projects I've contributed to:</p>
+      <div class="projects-icons">
+        <a href="https://www.curseforge.com/minecraft/mc-mods/minestuck" target="_blank" rel="noopener" class="project-link" data-name="Minestuck">
+          <img src="https://file.garden/ai5Hm_rOLRCONB5c/Logo1.png" alt="Minestuck" loading="lazy" />
+        </a>
+        <a href="https://modrinth.com/mod/ms_extras" target="_blank" rel="noopener" class="project-link" data-name="Minestuck Extras">
+          <img src="https://file.garden/ai5Hm_rOLRCONB5c/extras" alt="Minestuck Extras" loading="lazy" />
+        </a>
+        <a href="https://git.dragonfox.dev/DragonFoxCollective/SBEPIS" target="_blank" rel="noopener" class="project-link" data-name="SBEPIS">
+          <img src="https://file.garden/ai5Hm_rOLRCONB5c/sbepis.png" alt="SBEPIS" loading="lazy" />
+        </a>
+        <a href="https://mspfa.com/?s=236&p=1" target="_blank" rel="noopener" class="project-link" data-name="Alabaster: The Doomed Session">
+          <img src="https://file.garden/ai5Hm_rOLRCONB5c/alab_title_screen.png" alt="Alabaster: The Doomed Session" loading="lazy" />
+        </a>
+        <a href="https://modrinth.com/mod/hivecraft" target="_blank" rel="noopener" class="project-link" data-name="Hivecraft">
+          <img src="https://file.garden/ai5Hm_rOLRCONB5c/erthyjujkhujytr5te4wr3e.png" alt="Hivecraft" loading="lazy" />
+        </a>
+      </div>
+    </section>
+
+    <section class="commissions-section" id="commissions">
+      <button class="commissions-toggle" id="commissions-toggle">
+        Commission Info <span class="toggle-arrow">▾</span>
+      </button>
+      <div class="commissions-body" id="commissions-body">
+        <div class="commissions-inner">
+          <h2 class="commissions-header">COMMISSIONS</h2>
+          <div class="commissions-columns">
+            <div class="commissions-col">
+              <p class="commissions-col-title">About</p>
+              <p>I compose music across a wide range of styles, and I love to experiment, whatever you have in mind, I will have a lot of fun making it with you. My work has primarily been for games and webcomics, though I'm open to all kinds of projects. You can hear some of it in the musical carousel below, to get a feel for my style!</p>
+            </div>
+            <div class="commissions-col">
+              <p class="commissions-col-title">Pricing</p>
+              <p>I charge by the hour, and I usually work quite fast. I'll discuss creative decisions throughout the process so the final track is exactly what you want! The first 3 hours are charged upfront before work begins. Also, feel free to use anything I make for you in projects or whatever, I just want credit!</p>
+              <span class="commission-rate">$15 / hr</span>
+              <div class="commission-contact">
+                <p class="commissions-col-title">Talk to me!</p>
+                <p>
+                  Discord: heartsremedy<br />
+                  Email: <a href="mailto:heartsremedy413@gmail.com">heartsremedy413@gmail.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section">
+      <div class="carousel">
+        <div class="carousel-side carousel-side-left" id="side-left">
+          <img id="prev-cover" src="" alt="" />
+        </div>
+        <button class="arrow-btn arrow-left" id="prev-btn"><span></span></button>
+        <div class="carousel-main" id="main-wrapper">
+          <img id="main-cover" src="" alt="" />
+          <div class="play-overlay" id="play-overlay">▶</div>
+        </div>
+        <button class="arrow-btn arrow-right" id="next-btn"><span></span></button>
+        <div class="carousel-side carousel-side-right" id="side-right">
+          <img id="next-cover" src="" alt="" />
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-title" id="track-title"></p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact Info</h2>
+      <p>
+        Discord: heartsremedy<br />
+        Email: <a href="mailto:heartsremedy413@gmail.com">heartsremedy413@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <div class="modal-overlay" id="discord-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="discord-close-btn">✕</button>
+      <iframe src="https://discord.com/widget?id=1515543017111687169&theme=dark" width="300" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      <div class="modal-text">
+        <p>
+          Join my Discord! You can see my releases<br />
+          and talk to other community members here.<br /><br />
+          <a href="https://discord.gg/jfCe8fAq3Y" target="_blank" rel="noopener">
+            https://discord.gg/jfCe8fAq3Y
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="portfolio-audio"></audio>
+
+  <script>
+    const modal    = document.getElementById('discord-modal');
+    const openBtn  = document.getElementById('discord-open-btn');
+    const closeBtn = document.getElementById('discord-close-btn');
+
+    openBtn.addEventListener('click', () => modal.classList.add('open'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+    const tracks = [
+      {
+        title: "Endless Light ~ Minestuck",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/abababa.png",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/endless%20light%20upload.ogg"
+      },
+      {
+        title: "Mania ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/01145_1-ezgif.com-crop.gif",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/mania.mp3"
+      },
+      {
+        title: "Purple Town ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/purpletown%20logo.jpg",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/purple%20town.mp3"
+      },
+      {
+        title: "Impulse Control ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/image.png",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/impulse%20control.mp3"
+      },
+      {
+        title: "Coalesce ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/other%20album%20art%201.png",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/coalesce.mp3"
+      },
+      {
+        title: "Hypnosis ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/original%20track%20album%20art.png",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/hypnosis.mp3"
+      },
+      {
+        title: "Renart ~ Original work",
+        cover: "https://file.garden/ai5Hm_rOLRCONB5c/alab_title_screen.png",
+        src:   "https://file.garden/ai5Hm_rOLRCONB5c/renart.mp3"
+      }
+    ];
+
+    let currentIndex = 0;
+    let isPlaying = false;
+
+    const audio       = document.getElementById('portfolio-audio');
+    const mainImg     = document.getElementById('main-cover');
+    const prevImg     = document.getElementById('prev-cover');
+    const nextImg     = document.getElementById('next-cover');
+    const titleEl     = document.getElementById('track-title');
+    const mainWrapper = document.getElementById('main-wrapper');
+    const overlay     = document.getElementById('play-overlay');
+
+    function wrap(i) {
+      return ((i % tracks.length) + tracks.length) % tracks.length;
+    }
+
+    function loadTrack(index) {
+      currentIndex = wrap(index);
+      const t    = tracks[currentIndex];
+      const prev = tracks[wrap(currentIndex - 1)];
+      const next = tracks[wrap(currentIndex + 1)];
+      mainImg.src  = t.cover;
+      mainImg.alt  = t.title;
+      prevImg.src  = prev.cover;
+      nextImg.src  = next.cover;
+      titleEl.textContent = t.title;
+      const wasPlaying = isPlaying;
+      audio.src = t.src;
+      if (wasPlaying) audio.play();
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        overlay.textContent = '\u25B6';
+      } else {
+        audio.play();
+        isPlaying = true;
+        overlay.textContent = '\u23F8';
+      }
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => loadTrack(currentIndex - 1));
+    document.getElementById('next-btn').addEventListener('click', () => loadTrack(currentIndex + 1));
+    document.getElementById('side-left').addEventListener('click', () => loadTrack(currentIndex - 1));
+    document.getElementById('side-right').addEventListener('click', () => loadTrack(currentIndex + 1));
+    mainWrapper.addEventListener('click', togglePlay);
+
+    audio.addEventListener('ended', () => {
+      loadTrack(currentIndex + 1);
+      audio.play();
+      isPlaying = true;
+      overlay.textContent = '\u23F8';
+    });
+
+    loadTrack(0);
+
+    window.addEventListener('load', () => {
+      tracks.forEach((t, i) => {
+        if (i === 0) return;
+        const img = new Image();
+        img.src = t.cover;
+      });
+    });
+
+    const commissionsToggle = document.getElementById('commissions-toggle');
+    const commissionsBody   = document.getElementById('commissions-body');
+
+    commissionsToggle.addEventListener('click', () => {
+      const isOpen = commissionsBody.classList.toggle('open');
+      commissionsToggle.classList.toggle('open', isOpen);
+    });
+  </script>
+
+</body>
+</html>
